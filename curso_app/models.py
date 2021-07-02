@@ -19,10 +19,10 @@ class Curso(models.Model):
     objects = CursoManager()
 
     def __str__(self):
-        return f" El nombre es {self.name}"
+        return f" {self.name}"
 
     def __repr__(self):
-        return f" El nombre es {self.name}"
+        return f" {self.name}"
 
 
 
@@ -44,8 +44,8 @@ class Descripcion(models.Model):
     objects = DescripcionManager()
 
     def __str__(self):
-        return f" La descripcion es {self.description}"
+        return f"{self.description}"
 
     def __repr__(self):
-        return f" La descripcion es {self.description}"
+        return f"{self.description}"
 

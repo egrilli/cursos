@@ -5,7 +5,7 @@ from curso_app.models import *
 
 def index(request):
     context = {
-        'saludo': 'Hola aaaaaa'
+        'cursos': Curso.objects.all()
     }
     return render(request, 'index.html', context)
 
@@ -28,6 +28,7 @@ def agregarLibro(request):
             print(request.POST)
 
             nuevo_curso = Curso.objects.create(name=request.POST['name']) 
+            nueva_descripcion = Descripcion.objects.create(description=request.POST['description'], curso=nuevo_curso)
 
             messages.success(request, f" El curso {nuevo_curso.name} fue agregado")
 

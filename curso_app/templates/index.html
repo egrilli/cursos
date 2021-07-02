@@ -7,21 +7,42 @@
 
 
     <div class=" col-6 my-5 ">
-
-        {{saludo}}
-        {{casa}}
         <form action="/crear" method="POST">
             {% csrf_token %}
             <div class="mb-3">
                 <label for="disabledTextInput" class="form-label ">Name:</label>
                 <input type="text" class="form-control" placeholder="Nombre Libro" name="name"
-                    value="{{request.session.curso_name}}" >
+                    value="{{request.session.curso_name}}">
                 <label for="disabledTextInput" class="form-label ">Description</label>
                 <textarea class="form-control" rows="5" name="description"
                     placeholder="Agregar Descripcion">{{request.session.curso_description}}</textarea>
             </div>
             <button type="submit" class="btn btn-primary">Agregar</button>
         </form>
-
     </div>
-    {% endblock %}
+        <div class=" col-11 pb-5">
+            <table class="table table-success table-striped text-center">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Course Name</th>
+                        <th>Description</th>
+                        <th>Date Added</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for curso in cursos %}
+                    <tr>
+                        <th>{{curso.id}}</th>
+                        <th>{{curso.name}}</th>
+                        <th>{{curso.description}}</th>
+                        <th>{{curso.updated_at}}</th>
+                        <th>Hola</th>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+</div>
+{% endblock %}
