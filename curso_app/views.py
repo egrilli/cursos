@@ -3,14 +3,15 @@ from django.http import JsonResponse
 from django.contrib import messages
 from curso_app.models import *
 
-def index(request):
-    context = {
-        'cursos': Curso.objects.all()
-    }
-    return render(request, 'index.html', context)
-
 
 def agregarLibro(request):
+
+    if request.method == "GET":
+
+        context = {
+        'cursos': Curso.objects.all()
+        }
+        return render(request, 'index.html', context)
 
     if request.method == "POST":
         print(request.POST)
@@ -36,5 +37,22 @@ def agregarLibro(request):
             request.session['curso_description'] = ""
 
     return redirect("/")
+
+def mostrarLibro (request,id):
+    curso=Curso.objects.get(id=id)
+    if request.method == "GET":
+        context = {
+        'curso': curso
+        }
+    return render(request, 'curso_del.html', context)
+
+
+def deleteLibro (request,id):
+    borrar=Curso.objects.get(id=id)
+    borrar.delete()
+    messages.error(request,f"Registro numero {id} eliminado con exito")
+    return redirect ("/")
+
+
 
 

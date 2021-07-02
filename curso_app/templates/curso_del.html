@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+<div class="container">
+    <h1>Are you sure you want to delete the following course?</h1>
+    <h2>Name: {{curso.name}}</h2>
+    <h2>Description: {{curso.description}}</h2>
+    <a href="/" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">No</a>
+    <a href="/course/{{curso.id}}/delete" class="btn btn-danger btn-lg active" role="button" aria-pressed="true">Borrar</a>
+    
+</div>
+{% endblock %}
